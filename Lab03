@@ -1,0 +1,54 @@
+public class Lab03 {
+    /**
+     * This function uses binary search on an array of ints to locate a target int
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static boolean binarySearchInsert(int[] nums, int target) {
+        int low = 0;
+        int high = (nums.length-1);
+        int  i = (high + low)/2;
+        // while loop
+        while(target!=nums[i]&&high!=low)
+        {
+            if(target<nums[i]) {
+                high = i - 1;
+            }
+            else
+            {
+                low = i + 1;
+            }
+            i = (high + low)/2;
+        }
+        // comparison
+        if(nums[i]==target) {
+            System.out.println("target " + target + " is found at index " + i + ", so return " + i);
+            return true;
+        }else {
+            if(target!=nums[nums.length-1]) {
+                System.out.println("target " + target + " is not found in the array, we return the index of " + (i+1) + " where"+
+                        " it should be inserted and the array maintains sorted order.");
+                return false;
+            }
+            System.out.println("target " + target + " is not found in the array, we return the index of " + i + " where "+
+                    " it should be inserted and the array maintains sorted order.");
+            String str = "nums -> ";
+            for(int j = 0; j < nums.length; j++) {
+                if(j == nums.length-1) {
+                    str = str + nums[j] + "]";
+                    break;
+                }
+                str = str + nums[j] + ", ";
+            }
+            System.out.println(str);
+            return false;
+        }
+    }
+    // test
+    public static void main(String[] args) {
+        int[] nums = {1, 7, 19, 23, 76};
+        int target = 99;
+        System.out.println(binarySearchInsert(nums,target));
+    }
+}
